@@ -1,6 +1,6 @@
 ---
 metadata:
-  name: "build_policy_001: a custom build policy created with terraform"
+  name: "Ensure resources are only created in permitted locations"
   guidelines: "fix it"
   category: general
   severity: high

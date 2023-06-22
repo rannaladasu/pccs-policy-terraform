@@ -3,7 +3,7 @@ terraform {
   required_providers {
     prismacloud = {
       source  = "PaloAltoNetworks/prismacloud"
-      version = ">=1.2.9"
+      version = ">=1.4.1"
     }
   }
 }
@@ -22,16 +22,16 @@ provider "prismacloud" {
 #### Prisma Cloud Custom Policies ####################################
 
 # Configure a custom build policy from a local file
-resource "prismacloud_policy" "build_policy_001" {
-  name        = "build_policy_001: custom build policy #1 created with terraform"
+resource "prismacloud_policy" "example" {
+  name        = "Ensure resources are only created in permitted locations"
   policy_type = "config"
   cloud_type  = "azure"
   severity    = "high"
-  labels      = ["rannaladasu"]
-  description = "this describes the policy"
-  enabled     = false
+  labels      = []
+  description = ""
+  recommendation = ""
   rule {
-    name      = "build_policy_001: custom build policy #1 created with terraform"
+    name = "Ensure resources are only created in permitted locations"
     rule_type = "Config"
     parameters = {
       savedSearch = false
@@ -41,8 +41,8 @@ resource "prismacloud_policy" "build_policy_001" {
       type           = "build"
       recommendation = "fix it"
       metadata = {
-        "code" : file("policies/aks/aks001.yaml")
+        "code" : file("policies/aks/aks001.yaml"),
       }
     }
   }
-}
+} 

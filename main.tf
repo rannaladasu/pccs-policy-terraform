@@ -57,13 +57,23 @@ resource "prismacloud_policy" "rPolicy" {
   severity = "low"
   labels      = ["broccoli"]
   description = "this describes the policy"
+  recommendation = "Follow recommendation steps"
   rule {
     name     = "sample custom run policy created with terraform"
     rule_type = "Config"
+  
     parameters = {
       savedSearch = false
       withIac     = false
     }
     criteria = file("policies/aws/run_policy.rql")
   }
+
+
+
+  remediation {
+   cli_script_template = "aws iam update-account-password-policy --minimum-password-length 14 --require-uppercase-characters --require-lowercase-characters --require-numbers --require-symbols --allow-users-to-change-password --password-reuse-prevention 24 --max-password-age 90"
+   description = "This CLI command requires 'iam:UpdateAccountPasswordPolicy' permission. Successful execution will update the password policy to set the minimum password length to 14, require lowercase, uppercase, symbol, allow users to reset password, cannot reuse the last 24 passwords and password expiration to 90 days."
+  }
+  
 }

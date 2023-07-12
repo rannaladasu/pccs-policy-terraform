@@ -22,7 +22,7 @@ provider "prismacloud" {
 #### Prisma Cloud Custom Policies ####################################
 
 # Configure a custom build policy from a local file
-resource "prismacloud_policy" "example" {
+resource "prismacloud_policy" "bPolicy" {
   name        = "Ensure resources are only created in permitted locations"
   policy_type = "config"
   cloud_type  = "azure"
@@ -46,3 +46,24 @@ resource "prismacloud_policy" "example" {
     }
   }
 } 
+
+
+# Configure a custom run policy from a local file
+
+resource "prismacloud_policy" "rPolicy" {
+  policy_type = "config"
+  cloud_type  = "aws"
+  name        = "sample custom run policy created with terraform"
+  severity = "low"
+  labels      = ["broccoli"]
+  description = "this describes the policy"
+  rule {
+    name     = "sample custom run policy created with terraform"
+    rule_type = "Config"
+    parameters = {
+      savedSearch = false
+      withIac     = false
+    }
+    criteria = file("policies/aws/run_policy.rql")
+  }
+}

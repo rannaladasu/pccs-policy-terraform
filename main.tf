@@ -79,7 +79,7 @@ resource "prismacloud_policy" "rPolicy" {
 }
 
 
-# Configure a custom build policy from a local file
+# Configure a custom run and build policy from a local file
 resource "prismacloud_policy" "brPolicy" {
   name        = "custom - sample run & build policy with remediation created with terraform"
   policy_type = "config"

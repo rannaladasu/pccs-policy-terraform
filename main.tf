@@ -22,7 +22,6 @@ provider "prismacloud" {
 #### Prisma Cloud Custom Policies ####################################
 
 # Configure a custom build policy from a local file
-# Configure a custom build policy from a local file
 resource "prismacloud_policy" "bPolicy" {
   name        = "Ensure resources are only created in permitted locations"
   policy_type = "config"

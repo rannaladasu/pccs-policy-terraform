@@ -5,16 +5,10 @@ metadata:
   category: general
   severity: high
 scope:
-  provider: azure
+  provider: aws
 definition:
-  and:
+  or:
     - cond_type: attribute
-      resource_types: 
-      - azurerm_kubernetes_cluster
-      attribute: azure_active_directory_role_based_access_control
-      operator: exists
-    - cond_type: attribute
-      resource_types: 
-      - azurerm_kubernetes_cluster
-      attribute: azure_active_directory_role_based_access_control.azure_rbac_enabled
-      operator: is_true
+      resource_types: ["AWS::RDS::DBInstance", "AWS::EC2::Instance", "AWS::S3::Bucket", "AWS::SageMaker::NotebookInstance", "AWS::EKS::Cluster", "AWS::ECS::Cluster", "AWS::EMR::Cluster"]      
+      attribute: "Tags[?(@.Key == \"afl-business-application-key\")]" #Check only for Key
+      operator: "jsonpath_exists" 

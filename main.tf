@@ -8,7 +8,9 @@ terraform {
   }
 }
 provider "prismacloud" {
-  json_config_file = ".prismacloud_auth.json"
+   url = var.PRISMACLOUD_URL
+    username = var.PRISMACLOUD_USERNAME
+    password = var.PRISMACLOUD_PASSWORD
 }
 
 ### Make sure to update the authentication file  .prismacloud_auth.json

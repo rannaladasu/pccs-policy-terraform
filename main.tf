@@ -10,9 +10,10 @@ terraform {
 
 variable PRISMACLOUD_USERNAME {}
 variable PRISMACLOUD_PASSWORD {}
+variable PRISMACLOUD_URL {}
 
 provider "prismacloud" {
-   url = var.PRISMACLOUD_URL
+   url = "${var.PRISMACLOUD_URL}"
     username = "${var.PRISMACLOUD_USERNAME}"
     password = "${var.PRISMACLOUD_PASSWORD}"
 }

@@ -1,6 +1,6 @@
 ---
 metadata:
-  name: "custom - sample run & build policy with remediation created with terraform"
+  name: "Check tags - jsonpath policy"
   guidelines: "fix it"
   category: general
   severity: high

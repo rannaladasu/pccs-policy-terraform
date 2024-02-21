@@ -1,5 +1,5 @@
 {
     "url": "api2.prismacloud.io",
-    "username": ${var.PRISMACLOUD_USERNAME}, 
-    "password":  ${var.PRISMACLOUD_PASSWORD}
+    "username": "xxxxxxx", 
+    "password":  "xxxxx"
 }

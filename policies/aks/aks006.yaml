@@ -1,0 +1,15 @@
+---
+metadata:
+  name: "Ensure Azure Network Security Group does not include a rule to allow all ingress traffic from the Internet, except for HTTPS (port 1443)"
+  guidelines: "fix it"
+  category: general
+  severity: high
+scope:
+  provider: azure
+definition:
+  not:
+    - cond_type: attribute
+      resource_types:
+        - azurerm_network_security_group
+      attribute: security_rule[?(@.direction == "Inbound" & @.source_address_prefix == '*' & @.destination_port_range != '1443' & @.access == "Allow")]
+      operator: jsonpath_exists

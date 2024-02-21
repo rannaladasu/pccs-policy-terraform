@@ -8,14 +8,8 @@ terraform {
   }
 }
 
-variable PRISMACLOUD_USERNAME {}
-variable PRISMACLOUD_PASSWORD {}
-variable PRISMACLOUD_URL {}
-
 provider "prismacloud" {
-   url = "${var.PRISMACLOUD_URL}"
-    username = "${var.PRISMACLOUD_USERNAME}"
-    password = "${var.PRISMACLOUD_PASSWORD}"
+ json_config_file = ".prismacloud_auth.json"
 }
 
 ### Make sure to update the authentication file  .prismacloud_auth.json
@@ -30,7 +24,7 @@ provider "prismacloud" {
 
 # Configure a custom build policy from a local file
 resource "prismacloud_policy" "bPolicy" {
-  name        = "Ensure resources are only created in permitted locations"
+  name        = "Ensure Azure Network Security Group does not include a rule to allow all ingress traffic from the Internet, except for HTTPS (port 1443)"
   policy_type = "config"
   cloud_type  = "azure"
   severity    = "high"
@@ -38,7 +32,7 @@ resource "prismacloud_policy" "bPolicy" {
   description = ""
   recommendation = ""
   rule {
-    name = "Ensure resources are only created in permitted locations"
+    name = "Ensure Azure Network Security Group does not include a rule to allow all ingress traffic from the Internet, except for HTTPS (port 1443)"
     rule_type = "Config"
     parameters = {
       savedSearch = false
@@ -48,7 +42,7 @@ resource "prismacloud_policy" "bPolicy" {
       type           = "build"
       recommendation = "fix it"
       metadata = {
-        "code" : file("policies/aks/aks001.yaml"),
+        "code" : file("policies/aks/aks006.yaml"),
       }
     }
   }

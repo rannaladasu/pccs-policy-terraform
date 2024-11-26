@@ -3,7 +3,7 @@ terraform {
   required_providers {
     prismacloud = {
       source  = "PaloAltoNetworks/prismacloud"
-      version = ">=1.4.7"
+      version = ">=1.6.1"
     }
   }
 }
@@ -24,15 +24,14 @@ provider "prismacloud" {
 
 # Configure a custom build policy from a local file
 resource "prismacloud_policy" "bPolicy" {
-  name        = "Ensure Azure Network Security Group does not include a rule to allow all ingress traffic from the Internet, except for HTTPS (port 1443)"
+  name        = "EIP-CSE-IACOHP-AzureStorage-DisablePublicAccess-TFESS"
   policy_type = "config"
   cloud_type  = "azure"
   severity    = "high"
   labels      = []
-  description = ""
-  recommendation = ""
+  description = "this describes the policy"
   rule {
-    name = "Ensure Azure Network Security Group does not include a rule to allow all ingress traffic from the Internet, except for HTTPS (port 1443)"
+    name = "EIP-CSE-IACOHP-AzureStorage-DisablePublicAccess-TFESS"
     rule_type = "Config"
     parameters = {
       savedSearch = false
@@ -42,7 +41,7 @@ resource "prismacloud_policy" "bPolicy" {
       type           = "build"
       recommendation = "fix it"
       metadata = {
-        "code" : file("policies/aks/aks006.yaml"),
+        "code" : file("policies/aks/aks004.yaml"),
       }
     }
   }
